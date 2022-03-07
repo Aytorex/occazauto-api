@@ -22,6 +22,15 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+/**
+ * Import des routes
+ */
+const tensorflowRoutes = require('./routes/tensorflowRoutes');
+
+/**
+ * Mise en utilisation des routes
+ */
+app.use(tensorflowRoutes);
 
 /**
  * Mise en écoute de l'app
@@ -31,4 +40,10 @@ app.listen(port);
 const log = console.log;
 const chalk = require('chalk');
 
-log(chalk.bgGreen.black(process.env.APPNAME+ ' RESTful API server started on: ' + port));
+log(chalk.bgGreen.black(process.env.APPNAME + ' RESTful API server started on: ' + port));
+
+const tensorflowController = require("./controllers/tensorflowController")
+tensorflowController.train(100).then(() => {
+
+})
+

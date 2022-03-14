@@ -102,7 +102,6 @@ function getPredictedPoints(model, inputData, normalizationData) {
         const unNormPreds = preds
             .mul(labelMax.sub(labelMin))
             .add(labelMin);
-
         // Un-normalize the data
         return [unNormXs.dataSync(), unNormPreds.dataSync()];
     });
